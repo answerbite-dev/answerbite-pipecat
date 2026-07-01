@@ -7,8 +7,7 @@ from loguru import logger
 from pipecat.audio.vad.silero import SileroVADAnalyzer
 from pipecat.pipeline.pipeline import Pipeline
 from pipecat.pipeline.runner import PipelineRunner
-from pipecat.pipeline.task import PipelineTask
-from pipecat.pipeline.worker import PipelineParams
+from pipecat.pipeline.worker import PipelineWorker
 from pipecat.processors.aggregators.llm_context import LLMContext
 from pipecat.processors.aggregators.llm_response_universal import (
     LLMContextAggregatorPair,
@@ -71,7 +70,7 @@ async def main():
         aggregator.assistant(),
     ])
 
-    task = PipelineTask(pipeline)
+    task = PipelineWorker(pipeline)
 
     @transport.event_handler("on_first_participant_joined")
     async def on_first_participant_joined(transport, participant):
