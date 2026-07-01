@@ -71,7 +71,7 @@ async def main():
         aggregator.assistant(),
     ])
 
-    task = PipelineTask(pipeline, params=PipelineParams())
+    task = PipelineTask(pipeline)
 
     @transport.event_handler("on_first_participant_joined")
     async def on_first_participant_joined(transport, participant):
